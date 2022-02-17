@@ -3,6 +3,8 @@
 #include <string>
 #include "file_writer.h"
 
+
+
 ENTRY New;
 
 void entry_maker();
@@ -90,4 +92,4 @@ void entry_maker()
 	
 }
 	
-	
+	//exit function need to be handled
