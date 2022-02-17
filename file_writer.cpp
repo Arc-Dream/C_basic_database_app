@@ -23,10 +23,10 @@ void recorder()
 	std::fstream myFile;
 	
 
-	myFile.open("try_out.text", std::ios::app);
+	myFile.open("try_out.text");
 	
 	if(!myFile.is_open()) {
-		std::cout<<"Connection Proble with DB file";
+		std::cout<<"Connection Problem with DB file";
 	}
 	
 	if (myFile.is_open()) {
@@ -38,12 +38,25 @@ void recorder()
 			if (myFile.is_open()) {
 				if (old_index > 0) {
 					New.index = old_index + 1;
-					myFile<< New.index << "*" << New.content <<std::endl;
-					myFile<< 0; 
+					
+					myFile.close(); 
 				}
 
 			}		
 		}
+	}
+	
+	
+	
+	myFile.open("try_out.text", std::ios::app);
+	
+	if(!myFile.is_open()) {
+		std::cout<<"Connection Problem with DB file";
+	}
+	
+	if (myFile.is_open()) {
+		myFile<< New.index << " " << New.content <<std::endl;
+		myFile.close();
 	}
 	
 	myFile.close();
@@ -56,6 +69,7 @@ void recorder()
 	entry_maker();
 }
 
+
 void entry_maker() 
 {
 	std::string entry_instant;
@@ -67,9 +81,13 @@ void entry_maker()
 	
 	std::getline(std::cin, entry_instant);
 	
-	if(entry_instant == "0") {
+	if(entry_instant != "0") {
+		New.content = entry_instant;
 		system("pause");
-	} else {
-		New.content = entry_instant;		
-	}
+		entry_maker();	
+	} 
+		std::exit;
+	
 }
+	
+	
